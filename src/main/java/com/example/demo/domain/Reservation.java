@@ -1,9 +1,7 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Entity
@@ -15,5 +13,18 @@ public class Reservation {
     @Column(name = "reservation_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @NotNull
+    private int status;
+
+    @NotNull
+    @Column(name = "start_at", length = 100)
+    private String startAt;
+
+    @NotNull
+    @Column(name = "end_at", length = 100)
+    private String end_et;
 }
