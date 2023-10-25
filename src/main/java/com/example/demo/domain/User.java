@@ -4,13 +4,15 @@ import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
+@Table(name = "users")
 public class User {
 
     @Id
