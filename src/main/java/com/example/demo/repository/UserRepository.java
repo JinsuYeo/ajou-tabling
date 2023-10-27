@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
@@ -17,7 +19,24 @@ public class UserRepository {
         return user.getId();
     }
 
-    public User find(Long id) {
+    public User findOne(Long id) {
         return em.find(User.class, id);
+    }
+
+    public List<User> findAll() {
+        return em.createQuery("select u from User u", User.class)
+                .getResultList();
+    }
+
+    public List<User> findByName(String name) {
+        return em.createQuery("select u from User u where u.name = :name", User.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+    public List<User> findByEmail(String email) {
+        return em.createQuery("select u from User u where u.email = :email")
+                .setParameter("email", email)
+                .getResultList();
     }
 }
