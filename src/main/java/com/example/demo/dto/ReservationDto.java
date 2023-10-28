@@ -13,6 +13,7 @@ import lombok.*;
 @Data
 public class ReservationDto {
 
+    private String id;
     private String date;
     private String startTime;
     private String endTime;
@@ -21,6 +22,7 @@ public class ReservationDto {
     private int status;
 
     public ReservationDto(final Reservation reservation) {
+        this.id = Long.toString(reservation.getId());
         this.date = reservation.getDate();
         this.startTime = reservation.getStartAt();
         this.endTime = reservation.getEndAt();

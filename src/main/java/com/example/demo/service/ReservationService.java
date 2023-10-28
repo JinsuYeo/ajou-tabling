@@ -22,6 +22,10 @@ public class ReservationService {
 
         validateReservation(reservation);
 
+        reservation.setId(null);
+
+        System.out.println("reservation = " + reservation);
+        
         reservationRepository.save(reservation);
 
 //        return reservationRepository.findByUserId(reservation.getUser().getId());
@@ -37,9 +41,24 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
+    public List<Reservation> retrievePending() {
+        return reservationRepository.findPending();
+    }
+
+    public List<Reservation> retrieveApproval() {
+        return reservationRepository.findApproval();
+    }
+
+    public List<Reservation> retrieveRefuse() {
+        return reservationRepository.findRefuse();
+    }
+
+    @Transactional
     public List<Reservation> update(final Reservation reservation) {
         validateReservation(reservation);
 
+        System.out.println("reservation.getStatus() = " + reservation.getStatus());
+        
         Optional<Reservation> original = reservationRepository.findOne(reservation.getId());
         original.ifPresent(res -> {
             res.setStatus(reservation.getStatus());
