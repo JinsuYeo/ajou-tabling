@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Reservation;
-import com.example.demo.dto.ReservationDto;
 import com.example.demo.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
