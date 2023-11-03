@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Reservation;
+import com.example.demo.domain.ReservationStatus;
 import com.example.demo.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,15 +42,15 @@ public class ReservationService {
     }
 
     public List<Reservation> retrievePending() {
-        return reservationRepository.findPending();
+        return reservationRepository.findByStatus(ReservationStatus.WAITING);
     }
 
     public List<Reservation> retrieveApproval() {
-        return reservationRepository.findApproval();
+        return reservationRepository.findByStatus(ReservationStatus.APPROVAL);
     }
 
     public List<Reservation> retrieveRefuse() {
-        return reservationRepository.findRefuse();
+        return reservationRepository.findByStatus(ReservationStatus.REFUSE);
     }
 
     @Transactional
@@ -58,7 +59,7 @@ public class ReservationService {
 
         System.out.println("reservation.getStatus() = " + reservation.getStatus());
         
-        Optional<Reservation> original = reservationRepository.findOne(reservation.getId());
+        Optional<Reservation> original = reservationRepository.findById(reservation.getId());
         original.ifPresent(res -> {
             res.setStatus(reservation.getStatus());
 

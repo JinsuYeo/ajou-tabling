@@ -28,6 +28,10 @@ public class User {
     @Column(name = "user_email", length = 100)
     private String email;
 
+    @NotNull
+    @Column(name = "user_password")
+    private String password;
+
 //    @OneToMany(mappedBy = "user")
 //    private List<Reservation> reservations = new ArrayList<>();
 }

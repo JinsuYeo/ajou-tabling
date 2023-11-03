@@ -5,7 +5,7 @@ import com.example.demo.domain.ReservationStatus;
 import com.example.demo.dto.ReservationDto;
 import com.example.demo.dto.ReservationStatusDto;
 import com.example.demo.service.ReservationService;
-import com.example.demo.service.UserService;
+//import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
